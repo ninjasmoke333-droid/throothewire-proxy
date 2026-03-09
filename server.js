@@ -101,10 +101,10 @@ app.post("/api/tts", async (req, res) => {
     );
 
     if (!response.ok) {
-      const error = await response.text();
-      console.error("ElevenLabs error:", response.status, error);
-      return res.status(response.status).json({ error: "ElevenLabs TTS failed", details: error });
-    }
+  const error = await response.text();
+  console.error("ElevenLabs error:", response.status, error);
+  return res.status(response.status).json({ error: "ElevenLabs TTS failed", status: response.status, details: error });
+}
 
     const audioBuffer = await response.arrayBuffer();
     res.set("Content-Type", "audio/mpeg");
