@@ -2,7 +2,13 @@ import express from "express";
 import cors from "cors";
 
 
-
+app.get("/debug", (req, res) => {
+  res.json({
+    hasElevenLabsKey: !!process.env.VITE_ELEVENLABS_API_KEY,
+    hasVoiceId: !!process.env.VITE_ELEVENLABS_VOICE_ID,
+    keyPrefix: process.env.VITE_ELEVENLABS_API_KEY?.slice(0, 8),
+  });
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
